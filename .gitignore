@@ -1,0 +1,9 @@
+# 依赖与本地调试产物
+node_modules/
+.autotest/
+
+# 备份文件
+*.bak
+
+# 微信开发者工具个人配置（官方建议不入库）
+project.private.config.json

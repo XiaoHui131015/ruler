@@ -1,0 +1,87 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #f5f5f5;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* canvas 全屏铺满：0 刻度即为屏幕物理上边缘 */
+.ruler-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+/* 读数栏悬浮，不参与布局，避免占用 0 刻度上方的物理高度 */
+.reading-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  padding: 20rpx;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.reading-value {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #07c160;
+}
+
+.reading-unit {
+  font-size: 28rpx;
+  color: #666;
+  margin-left: 8rpx;
+}
+
+/* 控制按钮：悬浮于屏幕中心，竖直排列 */
+.controls {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.ctrl-btn {
+  width: 160rpx;
+  margin: 16rpx 0;
+  font-size: 26rpx;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.12);
+}
+
+.calibration-panel {
+  position: fixed;
+  left: 24rpx;
+  right: 24rpx;
+  bottom: 40rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  z-index: 20;
+  box-shadow: 0 4rpx 24rpx rgba(0, 0, 0, 0.15);
+}
+
+.panel-row {
+  margin-bottom: 8rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.panel-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16rpx;
+}

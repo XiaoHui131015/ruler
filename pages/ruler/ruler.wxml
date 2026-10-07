@@ -1,0 +1,50 @@
+<view class="container">
+  <!-- Canvas 尺子：全屏铺满，0 刻度从屏幕物理上边缘开始 -->
+  <canvas
+    type="2d"
+    id="rulerCanvas"
+    class="ruler-canvas"
+    bindtouchstart="onTouchStart"
+    bindtouchmove="onTouchMove"
+    bindtouchend="onTouchEnd"
+  ></canvas>
+
+  <!-- 读数显示：悬浮在 canvas 上方，不占用布局高度 -->
+  <view class="reading-bar" style="top: {{statusBarHeight}}px;">
+    <text class="reading-value">{{reading || '--'}}</text>
+    <text class="reading-unit">cm</text>
+  </view>
+
+  <!-- 控制按钮：屏幕中心竖直排列 -->
+  <view class="controls">
+    <button bindtap="toggleFlip" class="ctrl-btn" size="mini">
+      {{isFlipped ? '翻转回右' : '翻转到左'}}
+    </button>
+    <button bindtap="toggleMirror" class="ctrl-btn" size="mini">
+      {{isMirrored ? '调转回上' : '调转至下'}}
+    </button>
+    <button bindtap="openCalibration" class="ctrl-btn" size="mini">校准</button>
+    <button bindtap="saveImage" class="ctrl-btn" size="mini">保存</button>
+  </view>
+
+  <!-- 校准面板 -->
+  <view class="calibration-panel" wx:if="{{showCalibration}}">
+    <view class="panel-row">
+      <text>比例：{{scalePercent}}%</text>
+    </view>
+    <slider
+      min="50" max="150" value="{{scalePercent}}"
+      bindchanging="onScaleChanging"
+      bindchange="onScaleChange"
+      step="0.5"
+      activeColor="#07c160"
+    />
+    <view class="panel-actions">
+      <button size="mini" bindtap="resetCalibration">重置</button>
+      <button size="mini" bindtap="toggleLock" type="{{isLocked ? 'warn' : 'primary'}}">
+        {{isLocked ? '解锁' : '锁定'}}
+      </button>
+      <button size="mini" bindtap="closeCalibration">关闭</button>
+    </view>
+  </view>
+</view>
